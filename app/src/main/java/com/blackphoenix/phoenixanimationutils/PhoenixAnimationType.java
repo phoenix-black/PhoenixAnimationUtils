@@ -9,6 +9,9 @@ public enum PhoenixAnimationType {
     PENDULUM,
     FROM_MIDDLE,
     TO_MIDDLE,
+    PULSE,
+    FADE_IN,
+    FADE_OUT,
     SLIDE_FROM_LEFT,
     SLIDE_FROM_RIGHT;
 }

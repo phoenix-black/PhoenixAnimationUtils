@@ -30,6 +30,12 @@ public class PhoenixAnimationUtils  {
                 return AnimationUtils.loadAnimation(context,R.anim.slide_from_right);
             case PENDULUM:
                 return AnimationUtils.loadAnimation(context,R.anim.pendulum);
+            case PULSE:
+                return AnimationUtils.loadAnimation(context,R.anim.pulse);
+            case FADE_IN:
+                return AnimationUtils.loadAnimation(context,R.anim.fade_in);
+            case FADE_OUT:
+                return AnimationUtils.loadAnimation(context,R.anim.fade_out);
             default:
                 NotFoundException errorExcep = new NotFoundException("Unknown Animation Type: "+animationType.toString());
                 errorExcep.initCause(new Throwable(""+animationType.toString()+ " - PhoenixAnimationType is either empty or not matched with existing. "));
