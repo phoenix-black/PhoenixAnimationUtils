@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
     buildToolsVersion "27.0.2"
 
     defaultConfig {
-        applicationId "com.blackphoenix.phoenixanimationutils"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
