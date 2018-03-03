@@ -6,12 +6,13 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 
 /**
  * Created by Praba on 10/27/2017.
  */
 public class PhoenixAnimationUtils  {
-
 
     public static Animation loadAnimation(@NonNull Context context, @NonNull PhoenixAnimationType animationType) throws NotFoundException {
 
@@ -36,12 +37,25 @@ public class PhoenixAnimationUtils  {
                 return AnimationUtils.loadAnimation(context,R.anim.fade_in);
             case FADE_OUT:
                 return AnimationUtils.loadAnimation(context,R.anim.fade_out);
+            case ROTATION_INFINITE:
+                return animateRotation(-1,2000);
+
             default:
                 NotFoundException errorExcep = new NotFoundException("Unknown Animation Type: "+animationType.toString());
                 errorExcep.initCause(new Throwable(""+animationType.toString()+ " - PhoenixAnimationType is either empty or not matched with existing. "));
                 throw errorExcep;
         }
 
+    }
+
+
+
+    public static RotateAnimation animateRotation(int repeat, long duration){
+        RotateAnimation animRotation = new RotateAnimation(0.0F, 360.0F, 1, 0.5F, 1, 0.5F);
+        animRotation.setRepeatCount(repeat);
+        animRotation.setInterpolator(new LinearInterpolator());
+        animRotation.setDuration(duration);
+        return animRotation;
     }
 
     /*
@@ -52,7 +66,6 @@ public class PhoenixAnimationUtils  {
     * View view
     * long durationMilliS (In milliseconds)
     */
-
 
     public static void animateFlip(final Context context, final View view, long durationMilliS){
         Animation animationStart = loadAnimation(context,PhoenixAnimationType.TO_MIDDLE);
