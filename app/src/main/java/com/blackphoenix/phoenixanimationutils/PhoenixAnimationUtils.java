@@ -1,5 +1,6 @@
 package com.blackphoenix.phoenixanimationutils;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
 import android.support.annotation.NonNull;
@@ -108,6 +109,44 @@ public class PhoenixAnimationUtils  {
         animateFlip(context,view,-1);
     }
 
+
+    /**
+     *
+     * @param view
+     * @param durationInMs
+     * @param repeatCount
+     */
+
+    public static void animateFlipRotationHorizontal(View view, int durationInMs, int repeatCount){
+        animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.HORIZONTAL);
+    }
+
+    /**
+     *
+     * @param view
+     * @param durationInMs
+     * @param repeatCount
+     */
+
+    public static void animateFlipRotationVertical(View view, int durationInMs, int repeatCount){
+        animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.VERTICAL);
+    }
+
+    /**
+     *
+     * @param view
+     * @param duration
+     * @param repeatCount
+     * @param rotationDirection
+     */
+
+    public static void animateFlipRotation(View view, int duration, int repeatCount, PhoenixFlipRotationDirection rotationDirection){
+        ObjectAnimator flip = ObjectAnimator.ofFloat(view, rotationDirection.toString(), 0f, 360f);
+        flip.setDuration(duration);
+        flip.setInterpolator(new LinearInterpolator());
+        flip.setRepeatCount(repeatCount);
+        flip.start();
+    }
 
     /*
     * Pendulum Animation
