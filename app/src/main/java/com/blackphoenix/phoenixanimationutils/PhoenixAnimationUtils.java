@@ -1,5 +1,6 @@
 package com.blackphoenix.phoenixanimationutils;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
@@ -117,8 +118,8 @@ public class PhoenixAnimationUtils  {
      * @param repeatCount
      */
 
-    public static void animateFlipRotationHorizontal(View view, int durationInMs, int repeatCount){
-        animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.HORIZONTAL);
+    public static Animator animateFlipRotationHorizontal(View view, int durationInMs, int repeatCount){
+       return animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.HORIZONTAL);
     }
 
     /**
@@ -128,8 +129,8 @@ public class PhoenixAnimationUtils  {
      * @param repeatCount
      */
 
-    public static void animateFlipRotationVertical(View view, int durationInMs, int repeatCount){
-        animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.VERTICAL);
+    public static Animator animateFlipRotationVertical(View view, int durationInMs, int repeatCount){
+       return animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.VERTICAL);
     }
 
     /**
@@ -140,12 +141,13 @@ public class PhoenixAnimationUtils  {
      * @param rotationDirection
      */
 
-    public static void animateFlipRotation(View view, int duration, int repeatCount, PhoenixFlipRotationDirection rotationDirection){
+    public static Animator animateFlipRotation(View view, int duration, int repeatCount, PhoenixFlipRotationDirection rotationDirection){
         ObjectAnimator flip = ObjectAnimator.ofFloat(view, rotationDirection.toString(), 0f, 360f);
         flip.setDuration(duration);
         flip.setInterpolator(new LinearInterpolator());
         flip.setRepeatCount(repeatCount);
         flip.start();
+        return flip;
     }
 
     /*
