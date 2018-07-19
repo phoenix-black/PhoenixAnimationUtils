@@ -1,6 +1,7 @@
 package com.blackphoenix.phoenixanimationutils;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
@@ -142,10 +143,27 @@ public class PhoenixAnimationUtils  {
      */
 
     public static Animator animateFlipRotation(View view, int duration, int repeatCount, PhoenixFlipRotationDirection rotationDirection){
+        return animateFlipRotation(view,duration,repeatCount,rotationDirection,null);
+    }
+
+
+    /**
+     *
+     * @param view
+     * @param duration
+     * @param repeatCount
+     * @param rotationDirection
+     * @param animatorListenerAdapter
+     * @return
+     */
+    public static Animator animateFlipRotation(View view, int duration, int repeatCount, PhoenixFlipRotationDirection rotationDirection, AnimatorListenerAdapter animatorListenerAdapter){
         ObjectAnimator flip = ObjectAnimator.ofFloat(view, rotationDirection.toString(), 0f, 360f);
         flip.setDuration(duration);
         flip.setInterpolator(new LinearInterpolator());
         flip.setRepeatCount(repeatCount);
+        if(animatorListenerAdapter!=null) {
+            flip.addListener(animatorListenerAdapter);
+        }
         flip.start();
         return flip;
     }
@@ -172,9 +190,16 @@ public class PhoenixAnimationUtils  {
     }
 
     public static void animatePendulum(final Context context, View view, long durationMilliS, int repeatCount){
+        animatePendulum(context,view,durationMilliS,repeatCount,null);
+    }
+
+    public static void animatePendulum(final Context context, View view, long durationMilliS, int repeatCount, Animation.AnimationListener listener){
         Animation pendulumAnimation = loadAnimation(context,PhoenixAnimationType.PENDULUM);
         pendulumAnimation.setDuration(durationMilliS);
         pendulumAnimation.setRepeatCount(repeatCount);
+        if(listener!=null) {
+            pendulumAnimation.setAnimationListener(listener);
+        }
         view.startAnimation(pendulumAnimation);
     }
 
