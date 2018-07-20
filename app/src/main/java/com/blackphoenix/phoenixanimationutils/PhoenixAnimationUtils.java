@@ -128,10 +128,34 @@ public class PhoenixAnimationUtils  {
      * @param view
      * @param durationInMs
      * @param repeatCount
+     * @param listenerAdapter
+     * @return
+     */
+    public static Animator animateFlipRotationHorizontal(View view, int durationInMs, int repeatCount, AnimatorListenerAdapter listenerAdapter){
+        return animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.HORIZONTAL,listenerAdapter);
+    }
+
+    /**
+     *
+     * @param view
+     * @param durationInMs
+     * @param repeatCount
      */
 
     public static Animator animateFlipRotationVertical(View view, int durationInMs, int repeatCount){
        return animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.VERTICAL);
+    }
+
+    /**
+     *
+     * @param view
+     * @param durationInMs
+     * @param repeatCount
+     * @param listenerAdapter
+     * @return
+     */
+    public static Animator animateFlipRotationVertical(View view, int durationInMs, int repeatCount, AnimatorListenerAdapter listenerAdapter){
+        return animateFlipRotation(view,durationInMs,repeatCount,PhoenixFlipRotationDirection.VERTICAL,listenerAdapter);
     }
 
     /**
